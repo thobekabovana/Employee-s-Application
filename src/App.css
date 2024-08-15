@@ -1,42 +1,60 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+body{
+ background-color: papayawhip
+}
+
+h1{
+  color: black;
   text-align: center;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+input[type="search"]{
+  width: 15%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid black;
+  margin-left: 50%;
+  margin-top: 2%;
+  border-radius: 15%;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+label {
+  display: block;
+  margin-bottom: 10px;
+  margin-left: 2%;
+  font-weight: bold;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+input[type="text"] {
+  width: 10%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid black;
+  margin-left: 1%;
 }
 
-.card {
-  padding: 2em;
+.create{
+  margin-top: 1%;
+  margin-left: 1%;
+  font-size: large;
+  background-color: green;
 }
 
-.read-the-docs {
-  color: #888;
+.update{
+  margin-right: 10px;
+  font-size: large;
+  background-color: greenyellow;
+  display: inline-block;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
 }
+
+.delete{
+  
+  font-size: larger;
+  background-color: red;
+  display: inline-block;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
