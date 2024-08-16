@@ -1,51 +1,27 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
 
-import Employee from './components/Dislay'
+const UpdateForm = ({ user }) => {
+  const [name, setName] = useState(user.name);
+  const [email, setEmail] = useState(user.email);
+  const [phone, setPhone] = useState(user.phone);
 
-
-
-
-function App (){
-  const [inputs, setInputs] = useState({})
-
-
-  const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setInputs(values => ({...values, [name]: value}))
-  }
-  
-  
- function employer(){
-    const worker = localStorage.getItem("inputs");
-    let employees = worker ? JSON.parse(worker):[]
-    console.log(worker)
-    employees.push(inputs)
-    localStorage.setItem("inputs", JSON.stringify(employees))
-    // console.log(inputs)
-      }
-
-  
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    employer(inputs)
-    console.log(inputs);
-  }
-
-  
-    
-
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const updatedUser = { ...user, name, email, phone };
+    const users = JSON.parse(localStorage.getItem('users'));
+    const index = users.findIndex((u) => u.id === user.id);
+    users[index] = updatedUser;
+    localStorage.setItem('users', JSON.stringify(users));
+    // You can also send the updated data to your server or API here
+    // using fetch or Axios
+  };
 
   return (
     <>
     <div>
       <h1>Employee's Application</h1>
      </div>
-     <input type="search" id="search" name="search" placeholder='Search'></input>
+     
    <div>
 
      <form onSubmit={handleSubmit}>
@@ -73,19 +49,10 @@ function App (){
   <button className="create">Submit</button>
 
  
-
-
-
-  
 </form>
 </div>
-     
-
-<Employee/>
-
-
     </>
-  )
-}
+  );
+};
 
-export default App
+export default UpdateForm;
