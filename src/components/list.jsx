@@ -6,7 +6,7 @@ const UserList = () => {
   const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {
-    const storedUsers = localStorage.getItem('users');
+    const storedUsers = localStorage.getItem('inputs');
     if (storedUsers) {
       setUsers(JSON.parse(storedUsers));
     }

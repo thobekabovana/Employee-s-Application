@@ -30,23 +30,23 @@ const UpdateForm = ({ user }) => {
      <form onSubmit={handleSubmit}>
       <div>
   <label htmlFor="name">Name:</label>
-  <input type="text" id="name" name="name" value={inputs.name || ""} onChange={(e) => setName(e.target.value)}></input>
+  <input type="text" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)}></input>
  
   
   <label htmlFor="surname">Surname:</label>
-  <input type="text" id="surname" name="surname"  value={inputs.surname || ""} onChange={(e) => setSurname(e.target.value)}></input>
-  
+  <input type="text" id="surname" name="surname"  value={surname} onChange={(e) => setSurname(e.target.value)}></input>
+
   <label htmlFor="email">Email Adress</label>
-  <input type='text' id='email' name='email'  value={inputs.email || ""} onChange={(e) => setEmail(e.target.value)}></input>
+  <input type='text' id='email' name='email'  value={email} onChange={(e) => setEmail(e.target.value)}></input>
   
   <label htmlFor="number">Phone number</label>
-  <input type='text' id='number' name='number'  value={inputs.number || ""} onChange={(e) => setNumber(e.target.value)}></input>
+  <input type='text' id='number' name='number'  value={number} onChange={(e) => setNumber(e.target.value)}></input>
   
   <label htmlFor="position">Position</label>
-  <input type='text' id='position' name='position'  value={inputs.position || ""} onChange={(e) => setPosition(e.target.value)}></input>
+  <input type='text' id='position' name='position'  value={position } onChange={(e) => setPosition(e.target.value)}></input>
   
   <label htmlFor="id">ID no.</label>
-  <input type='text' id='id' name='id'  value={inputs.id || ""} onChange={(e) => setId(e.target.value)}></input>
+  <input type='text' id='id' name='id'  value={id} onChange={(e) => setId(e.target.value)}></input>
   </div>
 
   <button className="create">Submit</button>
