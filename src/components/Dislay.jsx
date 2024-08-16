@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Remove from "./Remove";
-
+import UserList from "./list";
 
 function employee() {
   const [List, setList] = useState(JSON.parse(localStorage.getItem("inputs")));
@@ -87,10 +87,10 @@ function employee() {
               <span>{inputs.position}</span>
             )})
 
-<button className="update btn" >Update</button>
+
 
 <Remove id={inputs.id}/>
-
+<UserList/>
 
           
           </li>

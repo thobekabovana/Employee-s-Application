@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import UpdateForm from './UpdateForm';
+import UpdateForm from './update';
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -18,7 +18,6 @@ const UserList = () => {
 
   return (
     <div>
-      <h1>User List</h1>
       <ul>
         {users.map((user) => (
           <li key={user.id}>
