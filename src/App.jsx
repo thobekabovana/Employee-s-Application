@@ -8,6 +8,7 @@ import Employee from './components/Dislay'
 
 
 
+
 function App (){
   const [inputs, setInputs] = useState({})
 
@@ -33,6 +34,8 @@ function App (){
     event.preventDefault();
     employer(inputs)
     console.log(inputs);
+    alert("successfully Registered");
+    window.location.reload();
   }
 
   

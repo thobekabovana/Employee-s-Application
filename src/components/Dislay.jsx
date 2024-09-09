@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Remove from "./Remove";
 import UserList from "./list";
+import Myteam from "./list";
 
 function employee() {
   const [List, setList] = useState(JSON.parse(localStorage.getItem("inputs")));
@@ -18,6 +19,9 @@ function employee() {
     });
     setFilteredEmployees(filteredList);
   };
+
+
+  console.log(filteredEmployees)
   return (
     <div style={{
         display: "flex",
@@ -47,7 +51,8 @@ function employee() {
       
       
       
-      <ul>
+      {/* <ul>
+        
         {filteredEmployees.map((inputs, index) => (
           <li key={index}>
             {editing === index ? (
@@ -90,12 +95,13 @@ function employee() {
 
 
 <Remove id={inputs.id}/>
-<UserList/>
+{/* <UserList/> */}
+{/* <Myteam/> */}
 
           
-          </li>
+          {/* </li>
         ))}
-      </ul>
+      </ul> */} 
     </div>
   )
 }

@@ -17,6 +17,7 @@ const remove =({id}) => {
       console.log(filteredData)
       localStorage.setItem('inputs', JSON.stringify(filteredData));
       alert("Deleted Successfully")
+      window.location.reload();
     }};
 
 
