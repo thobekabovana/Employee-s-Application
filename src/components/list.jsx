@@ -1,19 +1,18 @@
 import React, { useState } from "react";
+
+
+
 function Myteam() {
-  //an array of employees objects,initialized from local storage//
+
   const [List, setList] = useState(JSON.parse(localStorage.getItem("employees")));
-  //the index of the employee being edited, or null if no employee being edited.
   const [editing, setEditing] = useState(null);
-  //the search term entered by the user.
   const [searchTerm, setSearchTerm] = useState("");
-  //the filtered list of employees based on the search term
   const [filteredEmployees, setFilteredEmployees] = useState(List);
-  //function, sets the editing state to the index of the of the employee being edited.//
+
   const handleEdit = (index) => {
     setEditing(index);
   };
-  //Function Updates the employee object at the edited index ,saves the updated list to local storage,
-   //and resets the editing state.//
+
   const handleSave = (index) => {
     const updatedList = [...List];
     updatedList[index].name = document.getElementById(`name-${index}`).value;
@@ -22,8 +21,7 @@ function Myteam() {
     localStorage.setItem("employees", JSON.stringify(updatedList));
     setEditing(null);
   };
-  //fuction, removes the employee at the specified index from the list,saves the updated list
-  // to local storage, and reloads the page.//
+
   const handleDelete = (index) => {
     console.log(`Delete button clicked for employee ${List[index].name}`);
     const updatedList = List.filter((employee, i) => i !== index);
@@ -31,7 +29,7 @@ function Myteam() {
     localStorage.setItem("employees", JSON.stringify(updatedList));
     window.location.reload();
   };
-  //function for Search updates the searchTerm state and filters the list array based on the search term.//
+  
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
     const filteredList = List.filter((employee) => {
