@@ -5,6 +5,9 @@ import background from '../assets/images/360_F_657874794_myYcKACL3ipw93UHYnsBlWg
 import cover from '../assets/images/strategic-planning-for-success-through-people-business-development-concept-by-choosing-professional-leaders-employee-competency-businessman-holding-magnifying-glass-hrm-or-human-resource-m.jpg'
 
 export default function EmployeesForm() {
+
+    //   const data = useRef()
+
   const [inputs, setInputs] = useState({
     name: '',
     surname: '',
@@ -14,25 +17,26 @@ export default function EmployeesForm() {
     id: '',
   });
 
-  const [employees, setEmployees] = useState([]);
+  
+  useEffect(() => {
+    localStorage.setItem('employees', JSON.stringify(employees));
+  }, [employees]);
 
+  const [employees, setEmployees] = useState([]);
   useEffect(() => {
     const storedData = localStorage.getItem('employees');
     if (storedData) {
       setEmployees(JSON.parse(storedData));
     }
-  }, []);
+  }, []); // Add an empty dependency array
 
-  useEffect(() => {
-    localStorage.setItem('employees', JSON.stringify(employees));
-  }, [employees]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     employer(inputs);
     console.log(inputs);
     alert("successfully Registered");
-    window.location.reload();
+    setEmployees([...employees, inputs]); // Update the state with the new employee data
   }
 
   function employer(data) {
