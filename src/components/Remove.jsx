@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 
-const remove =({id}) => {
+const Remove =({id}) => {
 
     const [filtedList, setFiltedList] = useState([]);
     useEffect(() => {
@@ -15,7 +15,7 @@ const remove =({id}) => {
         const filteredData = filtedList.filter(item => item.id !== id);
       setFiltedList(filteredData);
       console.log(filteredData)
-      localStorage.setItem('inputs', JSON.stringify(filteredData));
+      localStorage.setItem('employees', JSON.stringify(filteredData));
       alert("Deleted Successfully")
       window.location.reload();
     }};
@@ -28,4 +28,4 @@ return(
 )
 }
 
-export default remove
+export default Remove

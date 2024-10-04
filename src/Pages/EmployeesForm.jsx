@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../index.css'
+import EmployeesCard from './Card';
 import background from '../assets/images/360_F_657874794_myYcKACL3ipw93UHYnsBlWgwSudZdjrH.jpg'
+import cover from '../assets/images/strategic-planning-for-success-through-people-business-development-concept-by-choosing-professional-leaders-employee-competency-businessman-holding-magnifying-glass-hrm-or-human-resource-m.jpg'
 
 export default function EmployeesForm() {
   const [inputs, setInputs] = useState({
@@ -12,16 +14,18 @@ export default function EmployeesForm() {
     id: '',
   });
 
+  const [employees, setEmployees] = useState([]);
+
   useEffect(() => {
     const storedData = localStorage.getItem('employees');
     if (storedData) {
-      setInputs(JSON.parse(storedData));
+      setEmployees(JSON.parse(storedData));
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('employees', JSON.stringify(inputs));
-  }, [inputs]);
+    localStorage.setItem('employees', JSON.stringify(employees));
+  }, [employees]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -32,10 +36,11 @@ export default function EmployeesForm() {
   }
 
   function employer(data) {
-    const storedData = localStorage.getItem('employeesData');
+    const storedData = localStorage.getItem('employees');
     let employees = storedData ? JSON.parse(storedData) : [];
     employees.push(data);
-    localStorage.setItem('employeesData', JSON.stringify(employees));
+    localStorage.setItem('employees', JSON.stringify(employees));
+    setEmployees(employees);
   }
 
   const handleChange = (event) => {
@@ -44,13 +49,28 @@ export default function EmployeesForm() {
     setInputs(values => ({...values, [name]: value}))
   }
 
+  const handleDeleteEmployee = (index) => {
+    const updatedEmployees = [...employees];
+    updatedEmployees.splice(index, 1);
+    setEmployees(updatedEmployees);
+    localStorage.setItem('employees', JSON.stringify(updatedEmployees));
+  }
+
   return (
     <>
       <div style={{
         backgroundImage: `url(${background})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        height: "120vh"
+        height: "120vh",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: "15px",
+        margin: "7.5%",
+        width: "80%",
+        height: "30%",
+        borderRadius: "5px",
+        boxShadow: "0 5px 10px rgba(2, 2, 2, 2.1)",
       }}>
 
         <h1>Employee's Application</h1>
@@ -92,7 +112,7 @@ export default function EmployeesForm() {
 
               <input type='text' 
                      id='id' 
-                     name='id'  
+                     name='id' 
                      placeholder='Employee ID number'
                      value={inputs.id || ""} onChange={handleChange}></input>
             </div>
@@ -105,8 +125,29 @@ export default function EmployeesForm() {
 
         </div>
 
-        {/* Your list component here */}
+        <div>
+          <ul>
+            <div style={{flexDirection: "column",
+              padding: "15px",
+              width: "30%",
+              height: "30%",
+              borderRadius: "5px",
+              boxShadow: "0 5px 10px rgba(2, 2, 2, 2.1)",
+              backgroundImage: `url(${cover})` ,
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center", }}>
 
+              {employees.map((employee, index) => (
+                <EmployeesCard
+                  key={index}
+                  employee={employee}
+                  handleDeleteEmployee={() => handleDeleteEmployee(index)}
+                />
+              ))}
+            </div>
+          </ul>
+        </div>
       </div>
     </>
   )

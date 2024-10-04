@@ -3,23 +3,14 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 // import UserList from './components/list'
-import Employee from './components/Dislay'
+// import Employee from './components/Dislay'
 import EmployeesForm from './Pages/EmployeesForm'
-import EmployeesList from './Pages/EmployeesList'
+
 
 
 
 
 function App (){
-  
-
-
-  
-
-
-  
- 
-
   
     
 
@@ -27,9 +18,10 @@ function App (){
 
   return (
     <>
-    
-    <EmployeesForm/>
+ 
+     
 
+<EmployeesForm/>
 {/* <UserList/> */}
 
     </>
