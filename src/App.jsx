@@ -1,31 +1,17 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-// import UserList from './components/list'
-// import Employee from './components/Dislay'
-import EmployeesForm from './Pages/EmployeesForm'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import EmployeesForm from './Pages/EmployeesForm'; 
+import EmployeesList from './Pages/EmployeesList'; // Import the list component (you need to create this)
 
-
-
-
-
-function App (){
-  
-    
-
-
-
+function App() {
   return (
-    <>
- 
-     
-
-<EmployeesForm/>
-{/* <UserList/> */}
-
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<EmployeesForm />} />
+        <Route path="/employees-list" element={<EmployeesList />} /> {/* List page route */}
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

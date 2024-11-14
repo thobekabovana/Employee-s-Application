@@ -1,23 +1,54 @@
 import React from 'react';
-import cover from '../assets/images/strategic-planning-for-success-through-people-business-development-concept-by-choosing-professional-leaders-employee-competency-businessman-holding-magnifying-glass-hrm-or-human-resource-m.jpg';
-import Remove from '../components/Remove';
 
-function Card({ employee, onDelete }) {
+function EmployeesCard({ employee, onDelete, onUpdate }) {
   return (
     <div style={{
-      border: '1px solid #ccc',
-      padding: '10px',
+      border: '1px solid #f6a4c0',  // Pink border
+      backgroundColor: '#fff',  // White background
+      padding: '20px',
+      borderRadius: '8px',  // Rounded corners
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',  // Light shadow for depth
       margin: '10px',
-     
+      maxWidth: '300px',  // Limit the width of the card
     }}>
-      <h2>{employee.name}</h2>
-      <p>Email: {employee.email}</p>
-      <p>Phone: {employee.phone}</p>
-      <Remove onDelete={() => onDelete(employee.id)}> // Pass the onDelete function and employee id as props
-        <button>Delete</button>
-      </Remove>
+      <h2 style={{ color: '#f6a4c0' }}>{employee.name} {employee.surname}</h2>  {/* Pink text for name */}
+      <p style={{ color: '#333' }}>Email: {employee.email}</p>
+      <p style={{ color: '#333' }}>Phone: {employee.number}</p>
+      <p style={{ color: '#333' }}>Position: {employee.position}</p>
+
+      <div>
+        <button
+          onClick={() => onDelete(employee.id)}
+          style={{
+            backgroundColor: '#f6a4c0',  // Pink background for button
+            color: '#fff',  // White text
+            padding: '8px 16px',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s',
+            marginRight: '10px',
+          }}
+        >
+          Delete
+        </button>
+        <button
+          onClick={() => onUpdate(employee.id)}
+          style={{
+            backgroundColor: '#f6a4c0',  // Pink background for button
+            color: '#fff',  // White text
+            padding: '8px 16px',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s',
+          }}
+        >
+          Update
+        </button>
+      </div>
     </div>
   );
 }
 
-export default Card;
+export default EmployeesCard;

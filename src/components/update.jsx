@@ -1,61 +1,93 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const UpdateForm = ({ user }) => {
-  const [name, setName] = useState(user.name);
-  const [email, setEmail] = useState(user.email);
-  const [number, setNumber] = useState(user.number);
-  const [position, setPosition] = useState(user.position);
-  const [id, setId] = useState(user.id);
+function UpdateForm({ employee, onSave, onCancel }) {
+  // Ensure that employee is not undefined
+  const [formData, setFormData] = useState({
+    name: '',
+    surname: '',
+    email: '',
+    number: '',
+    position: '',
+    id: '',
+  });
+
+  useEffect(() => {
+    if (employee) { // Check if employee data is provided
+      setFormData({
+        name: employee.name,
+        surname: employee.surname,
+        email: employee.email,
+        number: employee.number,
+        position: employee.position,
+        id: employee.id,
+      });
+    }
+  }, [employee]); // Re-run the effect if the employee prop changes
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const updatedUser = { ...user, name, email, number, position, id };
-    const users = JSON.parse(localStorage.getItem('users'));
-    const index = users.findIndex((u) => u.id === user.id);
-    users[index] = updatedUser;
-    localStorage.setItem('users', JSON.stringify(users));
-    s
+    onSave(formData); // Save the updated employee details
   };
 
+  // Render loading or form based on the presence of employee data
+  if (!employee) {
+    return <p>Loading...</p>; // Display a loading message if employee is undefined
+  }
 
-  
   return (
-    <>
-    <div>
-      <h1>Employee's Application</h1>
-     </div>
-     
-   <div>
-
-     <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="update-form">
+      <h3>Edit Employee</h3>
+      <input
+        type="text"
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+        placeholder="Name"
+      />
+      <input
+        type="text"
+        name="surname"
+        value={formData.surname}
+        onChange={handleChange}
+        placeholder="Surname"
+      />
+      <input
+        type="email"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        placeholder="Email"
+      />
+      <input
+        type="text"
+        name="number"
+        value={formData.number}
+        onChange={handleChange}
+        placeholder="Phone Number"
+      />
+      <input
+        type="text"
+        name="position"
+        value={formData.position}
+        onChange={handleChange}
+        placeholder="Position"
+      />
       <div>
-  <label htmlFor="name">Name:</label>
-  <input type="text" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)}></input>
- 
-  
-  <label htmlFor="surname">Surname:</label>
-  <input type="text" id="surname" name="surname"  value={surname} onChange={(e) => setSurname(e.target.value)}></input>
-
-  <label htmlFor="email">Email Adress</label>
-  <input type='text' id='email' name='email'  value={email} onChange={(e) => setEmail(e.target.value)}></input>
-  
-  <label htmlFor="number">Phone number</label>
-  <input type='text' id='number' name='number'  value={number} onChange={(e) => setNumber(e.target.value)}></input>
-  
-  <label htmlFor="position">Position</label>
-  <input type='text' id='position' name='position'  value={position } onChange={(e) => setPosition(e.target.value)}></input>
-  
-  <label htmlFor="id">ID no.</label>
-  <input type='text' id='id' name='id'  value={id} onChange={(e) => setId(e.target.value)}></input>
-  </div>
-
-  <button className="create">Submit</button>
-
- 
-</form>
-</div>
-    </>
+        <button type="submit">Save</button>
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
+      </div>
+    </form>
   );
-};
+}
 
 export default UpdateForm;
